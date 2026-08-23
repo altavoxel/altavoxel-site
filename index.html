@@ -460,26 +460,31 @@
       </div>
 
       <div class="contact-container">
-        <!-- Direct mailto fallback or connect to your Formspree/Formspark backend -->
-        <form action="mailto:awards@altavoxel.com" method="post" enctype="text/plain">
+        <!-- Web3Forms -->
+        <form action="https://api.web3forms.com/submit" method="POST">
+          <!-- Web3Forms Access Key -->
+          <input type="hidden" name="access_key" value="f86669a3-95ce-478b-904b-0fe3694df263">
+          <input type="hidden" name="subject" value="New Altavoxel Award Inquiry">
+          <input type="hidden" name="from_name" value="Altavoxel Web Form">
+
           <div class="form-group">
             <label for="name">Your Name</label>
-            <input type="text" id="name" name="Name" placeholder="e.g. Sarah Jenkins" required />
+            <input type="text" id="name" name="name" placeholder="e.g. Sarah Jenkins" required />
           </div>
 
           <div class="form-group">
             <label for="email">Work Email</label>
-            <input type="email" id="email" name="Email" placeholder="director@raceevent.com" required />
+            <input type="email" id="email" name="email" placeholder="director@raceevent.com" required />
           </div>
 
           <div class="form-group">
             <label for="event">Event Name & Date</label>
-            <input type="text" id="event" name="Event_Details" placeholder="e.g. Ridgeback 50K Endurance — Oct 2026" required />
+            <input type="text" id="event" name="event_details" placeholder="e.g. Ridgeback 50K — Oct 2026" required />
           </div>
 
           <div class="form-group">
             <label for="type">Estimated Hardware Needed</label>
-            <select id="type" name="Product_Interest">
+            <select id="type" name="product_interest">
               <option value="Overall Podium Trophies (Top 3 M/F)">Overall Podium Trophies (Top 3 M/F)</option>
               <option value="Category & Age Group Awards (10-30 units)">Category & Age Group Awards (10-30 units)</option>
               <option value="Full Finisher Batch (>100 units)">Full Finisher Batch (>100 units)</option>
@@ -489,7 +494,7 @@
 
           <div class="form-group">
             <label for="message">Notes / Route Details</label>
-            <textarea id="message" name="Message" rows="4" placeholder="Let us know if you have a GPX file, specific dimensions, or budget targets."></textarea>
+            <textarea id="message" name="message" rows="4" placeholder="Let us know if you have a GPX file, specific dimensions, or budget targets."></textarea>
           </div>
 
           <button type="submit" class="btn-submit">Submit Quote Inquiry</button>
