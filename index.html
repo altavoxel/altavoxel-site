@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Altavoxel | Bespoke Race Awards & Custom 3D Keepsakes</title>
+  <meta name="description" content="Elevated 3D-printed podium trophies, finisher tokens, and topographic course models tailored for endurance race directors." />
+  
+  <!-- Modern Inter Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #0d4187;
+      --primary-dark: #07254f;
+      --primary-light: #2d82d6;
+      --accent: #1351a3;
+      --bg-light: #f8fafc;
+      --surface: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text-main);
+      background-color: var(--surface);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navigation */
+    header {
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+    }
+
+    .nav-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .brand {
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .brand span {
+      color: var(--primary-light);
+    }
+
+    .nav-cta {
+      display: inline-block;
+      padding: 10px 20px;
+      background: var(--primary);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .nav-cta:hover {
+      background: var(--primary-dark);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 80px 0 60px;
+      text-align: center;
+      background: radial-gradient(circle at 50% 20%, #f0f7ff 0%, #ffffff 70%);
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 6px 14px;
+      background: #e9f2fb;
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      border-radius: 50px;
+      margin-bottom: 24px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 900;
+      line-height: 1.15;
+      color: var(--primary-dark);
+      letter-spacing: -1px;
+      max-width: 850px;
+      margin: 0 auto 20px;
+    }
+
+    .hero p {
+      font-size: clamp(17px, 2vw, 20px);
+      color: var(--text-muted);
+      max-width: 680px;
+      margin: 0 auto 36px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-secondary {
+      display: inline-block;
+      padding: 14px 28px;
+      background: #ffffff;
+      color: var(--text-main);
+      border: 1px solid var(--border);
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: 6px;
+      text-decoration: none;
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-light);
+    }
+
+    /* Section Setup */
+    section {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      max-width: 650px;
+      margin: 0 auto 50px;
+    }
+
+    .section-title h2 {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+
+    .section-title p {
+      color: var(--text-muted);
+      font-size: 16px;
+    }
+
+    /* Product Grid */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 28px;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px 28px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px -10px rgba(13, 65, 135, 0.1);
+    }
+
+    .card-icon {
+      font-size: 28px;
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+
+    .card h3 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 15px;
+      margin-bottom: 20px;
+    }
+
+    .card ul {
+      list-style: none;
+      font-size: 14px;
+      color: var(--text-main);
+    }
+
+    .card ul li {
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card ul li::before {
+      content: "✓";
+      color: var(--primary-light);
+      font-weight: 800;
+    }
+
+    /* Process Section */
+    .process-section {
+      background: var(--bg-light);
+    }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+    }
+
+    .step-box {
+      background: #fff;
+      padding: 28px 24px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .step-num {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--primary-light);
+      margin-bottom: 12px;
+      letter-spacing: 1px;
+    }
+
+    .step-box h4 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--primary-dark);
+    }
+
+    .step-box p {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    /* Contact / Quote Form */
+    .contact-container {
+      max-width: 640px;
+      margin: 0 auto;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.04);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--text-main);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 15px;
+      font-family: inherit;
+      color: var(--text-main);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 14px;
+      background: var(--primary);
+      color: #fff;
+      font-size: 16px;
+      font-weight: 700;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-submit:hover {
+      background: var(--primary-dark);
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 0;
+      text-align: center;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    footer a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <div class="container nav-wrapper">
+      <a href="#" class="brand">ALTA<span>VOXEL</span></a>
+      <a href="#quote" class="nav-cta">Request Director Sample</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="pill">Bespoke Event Manufacturing</div>
+      <h1>Replace Generic Medals With Handcrafted Podium Hardware.</h1>
+      <p>We transform your race course profiles, elevation data, and brand marks into custom 3D printed awards and commemorative athlete keepsakes.</p>
+      <div class="hero-buttons">
+        <a href="#quote" class="nav-cta" style="padding: 14px 28px; font-size: 15px;">Get a Custom Race Proposal</a>
+        <a href="#offerings" class="btn-secondary">View Product Lineup</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Offerings -->
+  <section id="offerings">
+    <div class="container">
+      <div class="section-title">
+        <h2>Engineered For The Finish Line</h2>
+        <p>Trophies and tokens designed specifically to celebrate grueling efforts and unforgettable courses.</p>
+      </div>
+
+      <div class="grid-3">
+        <!-- Card 1 -->
+        <div class="card">
+          <div class="card-icon">🏔️</div>
+          <h3>Topographic Course Trophies</h3>
+          <p>Real-world 3D elevation terrain models derived directly from your GPX route. Perfect for overall winners and signature podium finishes.</p>
+          <ul>
+            <li>True elevation & ridge line accuracy</li>
+            <li>Custom race branding & year debossing</li>
+            <li>Multi-material base mounting options</li>
+          </ul>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card">
+          <div class="card-icon">🏅</div>
+          <h3>Category & Finisher Tokens</h3>
+          <p>Memorable, textured age-group awards and category tokens that athletes actually keep on display rather than tucking away in a drawer.</p>
+          <ul>
+            <li>Durable high-impact materials</li>
+            <li>Color-coded by age group or discipline</li>
+            <li>Low minimum order quantities</li>
+          </ul>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card">
+          <div class="card-icon">📐</div>
+          <h3>Custom Geometric Keepsakes</h3>
+          <p>Bespoke finisher models, custom course landmarks, and unique direct-to-consumer mementos tailored for your event community.</p>
+          <ul>
+            <li>Custom CAD modeling from your logo</li>
+            <li>Batch manufacturing with zero tooling fees</li>
+            <li>Rapid prototypes within 5 business days</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section class="process-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>How We Partner With Race Directors</h2>
+        <p>From GPX track file to race day podium in four seamless steps.</p>
+      </div>
+
+      <div class="process-steps">
+        <div class="step-box">
+          <div class="step-num">STEP 01</div>
+          <h4>Send Route & Concept</h4>
+          <p>Share your GPX trace, race logo, and target award categories.</p>
+        </div>
+
+        <div class="step-box">
+          <div class="step-num">STEP 02</div>
+          <h4>3D CAD Concept</h4>
+          <p>We generate digital 3D prototypes and visual proofs for your review.</p>
+        </div>
+
+        <div class="step-box">
+          <div class="step-num">STEP 03</div>
+          <h4>Sample Approval</h4>
+          <p>We produce and ship a physical sample so you can feel the quality in hand.</p>
+        </div>
+
+        <div class="step-box">
+          <div class="step-num">STEP 04</div>
+          <h4>Batch Production</h4>
+          <p>Full batch production, inspection, and direct delivery well before race weekend.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quote Form Section -->
+  <section id="quote">
+    <div class="container">
+      <div class="section-title">
+        <h2>Request a Race Director Quote & Sample</h2>
+        <p>Tell us about your upcoming event, and we will send design concepts and tiered pricing options.</p>
+      </div>
+
+      <div class="contact-container">
+        <!-- Direct mailto fallback or connect to your Formspree/Formspark backend -->
+        <form action="mailto:awards@altavoxel.com" method="post" enctype="text/plain">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="Name" placeholder="e.g. Sarah Jenkins" required />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Work Email</label>
+            <input type="email" id="email" name="Email" placeholder="director@raceevent.com" required />
+          </div>
+
+          <div class="form-group">
+            <label for="event">Event Name & Date</label>
+            <input type="text" id="event" name="Event_Details" placeholder="e.g. Ridgeback 50K Endurance — Oct 2026" required />
+          </div>
+
+          <div class="form-group">
+            <label for="type">Estimated Hardware Needed</label>
+            <select id="type" name="Product_Interest">
+              <option value="Overall Podium Trophies (Top 3 M/F)">Overall Podium Trophies (Top 3 M/F)</option>
+              <option value="Category & Age Group Awards (10-30 units)">Category & Age Group Awards (10-30 units)</option>
+              <option value="Full Finisher Batch (>100 units)">Full Finisher Batch (>100 units)</option>
+              <option value="Custom Bespoke Design / Consultation">Custom Bespoke Design / Consultation</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Notes / Route Details</label>
+            <textarea id="message" name="Message" rows="4" placeholder="Let us know if you have a GPX file, specific dimensions, or budget targets."></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit">Submit Quote Inquiry</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p><strong>ALTAVOXEL</strong> — Bespoke Race Awards & Custom 3D Keepsakes</p>
+      <p style="margin-top: 8px;">Inquiries: <a href="mailto:hello@altavoxel.com">hello@altavoxel.com</a> | Follow: <a href="https://instagram.com/altavoxel" target="_blank">@altavoxel</a></p>
+      <p style="margin-top: 16px; font-size: 12px; color: #94a3b8;">&copy; 2026 Altavoxel. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
