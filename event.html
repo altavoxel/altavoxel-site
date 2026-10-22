@@ -1442,7 +1442,7 @@
                                 <div class="product-card-title">Modular 3D Topographic Event Display Frame &amp; GPX Route Insert System</div>
                                 <div class="product-card-price-row">
                                     <span class="product-card-price" id="trayCardPriceBadge">1 to 5 Slots &bull; Formats from $45</span>
-                                    <span class="product-bundle-tag" style="background: #ecfdf5; color: #047857;">3 Engraved Items/Slot Included</span>
+                                    <span class="product-bundle-tag" style="background: #ecfdf5; color: #047857;">All Engraving Included</span>
                                 </div>
                                 <div class="product-card-desc">
                                     Celebrate your achievements with a premium, multi-material 3D-printed display system turning your race data into terrain art. Features removable topographic modules revealing inner debossed performance stats, official series branding, and multiple horizontal or tiered frame configurations.
@@ -1662,10 +1662,10 @@
                             <span style="font-size: 20px; line-height: 1;">✍️</span>
                             <div>
                                 <div style="font-size: 13px; font-weight: 700; color: #065f46;">
-                                    Custom Engraving Included: Up to 3 Items Per Slot ($0.00)
+                                    All Custom Engraving Included ($0.00)
                                 </div>
                                 <p style="font-size: 12px; color: #047857; margin-top: 2px; line-height: 1.45;">
-                                    Each compartment includes debossed stats on the inner reveal data plate (e.g., Athlete Name, Time/Standing, Elevation/Distance). <strong>Included at no extra charge.</strong>
+                                    Every compartment includes debossed personalization stats on the inner reveal data plate (e.g., Athlete Name, Time/Standing, Elevation/Distance) across all 1, 2, 3, 4, and 5-slot frames. <strong>Included at no extra charge.</strong>
                                 </p>
                             </div>
                         </div>
@@ -2219,9 +2219,9 @@
                 itemTotal = slot.price;
                 itemName = `Modular 3D GPX Display Frame (${slot.name})`;
 
-                // 3 Engraved items per slot is INCLUDED ($0.00)
+                // All custom engraving is INCLUDED ($0.00) regardless of slot count
                 document.getElementById('sumEngravingRow').style.display = 'flex';
-                document.getElementById('sumEngravingLabel').textContent = `Custom Engraving (${state.traySlotCount} Slots &bull; 3 Items/Slot):`;
+                document.getElementById('sumEngravingLabel').textContent = `Custom Engraving (${state.traySlotCount} Slots):`;
                 document.getElementById('sumEngravingPrice').textContent = `INCLUDED ($0.00)`;
                 document.getElementById('sumEngravingPrice').style.color = '#047857';
 
@@ -2347,7 +2347,7 @@
             
             if (state.productType === 'tray') {
                 document.getElementById('confirmFinish').textContent = state.trayColor;
-                document.getElementById('confirmEngraving').textContent = `Included (Up to 3 items per slot: Name, Time, Elevation)`;
+                document.getElementById('confirmEngraving').textContent = `All Custom Engraving Included (Name, Time, Elevation & Stats)`;
                 document.querySelector('.confirm-next-steps').innerHTML = `
                     <strong>Next Steps for Your Display Frame:</strong><br>
                     1. <strong>3D Design Image Confirmation:</strong> We will email a 3D digital rendering image to <strong>${email}</strong> so you can inspect and approve the design prior to printing.<br>

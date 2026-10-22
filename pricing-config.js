@@ -24,7 +24,7 @@ window.ALTAVOXEL_PRICING = {
     gpxDisplayTray: {
         isPriceTBD: false,           // Set to true if you wish to display "Price TBD" instead of numeric estimates
         shippingRatePA: 5,           // $5.00 flat rate shipping within Pennsylvania
-        customEngravingIncluded: true, // Up to 3 items per slot included at $0.00
+        customEngravingIncluded: true, // All custom engraving included at $0.00 for all slot counts
         
         // Slot formats & configurable prices
         slots: {
