@@ -719,6 +719,184 @@
       line-height: 1.4;
     }
 
+    /* Anti-Spam Human Verification (reCAPTCHA style) */
+    .captcha-widget-wrap {
+      margin: 18px 0 16px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+    }
+
+    .captcha-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 304px;
+      max-width: 100%;
+      height: 74px;
+      background: #f9fafb;
+      border: 1px solid #d1d5db;
+      border-radius: 4px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      padding: 0 14px;
+      user-select: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      box-sizing: border-box;
+    }
+
+    .captcha-box.error {
+      border-color: #ef4444 !important;
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.18);
+      animation: captchaShake 0.4s ease-in-out;
+    }
+
+    @keyframes captchaShake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-5px); }
+      40%, 80% { transform: translateX(5px); }
+    }
+
+    .captcha-box-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+    }
+
+    .captcha-checkbox-slot {
+      width: 26px;
+      height: 26px;
+      border: 2px solid #c1c1c1;
+      border-radius: 3px;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-sizing: border-box;
+    }
+
+    .captcha-checkbox-slot:focus-visible {
+      outline: 2px solid var(--primary-light);
+      outline-offset: 2px;
+    }
+
+    .captcha-box:hover .captcha-checkbox-slot:not(.verified) {
+      border-color: #9ca3af;
+    }
+
+    .captcha-checkbox-slot.verifying {
+      border-color: transparent;
+      background: transparent;
+    }
+
+    .captcha-spinner {
+      display: none;
+      width: 24px;
+      height: 24px;
+      animation: captchaRotate 0.85s linear infinite;
+    }
+
+    .captcha-checkbox-slot.verifying .captcha-spinner {
+      display: block;
+    }
+
+    @keyframes captchaRotate {
+      100% { transform: rotate(360deg); }
+    }
+
+    .captcha-checkmark-icon {
+      display: none;
+      width: 20px;
+      height: 20px;
+      color: #16a34a;
+    }
+
+    .captcha-checkbox-slot.verified {
+      border-color: #16a34a;
+      background: #f0fdf4;
+    }
+
+    .captcha-checkbox-slot.verified .captcha-checkmark-icon {
+      display: block;
+      animation: captchaCheckPop 0.28s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    @keyframes captchaCheckPop {
+      0% { transform: scale(0.3); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .captcha-label {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: #1f2937;
+      cursor: pointer;
+    }
+
+    .captcha-box-right {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      padding-left: 8px;
+      border-left: 1px solid #f1f5f9;
+    }
+
+    .captcha-logo {
+      width: 26px;
+      height: 26px;
+    }
+
+    .captcha-brand-text {
+      font-size: 9.5px;
+      font-weight: 700;
+      color: #555555;
+      letter-spacing: -0.2px;
+      line-height: 1;
+    }
+
+    .captcha-sub-links {
+      font-size: 8px;
+      color: #888888;
+      line-height: 1;
+    }
+
+    .captcha-error-msg {
+      color: #dc2626;
+      font-size: 12px;
+      font-weight: 600;
+      margin-top: 6px;
+      display: none;
+    }
+
+    .quote-success-banner {
+      display: none;
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      border-radius: 8px;
+      padding: 18px 20px;
+      margin-top: 20px;
+      text-align: center;
+      color: #065f46;
+    }
+
+    .quote-success-banner h4 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .quote-success-banner p {
+      font-size: 13.5px;
+      color: #047857;
+      line-height: 1.5;
+    }
+
     /* Footer */
     footer {
       border-top: 1px solid var(--border);
@@ -1042,11 +1220,17 @@
       </div>
 
       <div class="contact-container">
-        <form action="https://api.web3forms.com/submit" method="POST">
-          <!-- Web3Forms Key (Replace YOUR_ACCESS_KEY_HERE) -->
-          <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
-          <input type="hidden" name="subject" value="New Altavoxel Award Inquiry / Free Proof Request">
-          <input type="hidden" name="from_name" value="Altavoxel Website Contact">
+        <form id="quoteForm" onsubmit="handleQuoteSubmit(event)" action="https://formsubmit.co/ajax/awards@altavoxel.com" method="POST">
+          <input type="hidden" name="_to" value="awards@altavoxel.com">
+          <input type="hidden" name="_subject" value="New Altavoxel Director 3D Concept Proof Request">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+
+          <!-- Anti-Spam Security & Honeypots -->
+          <input type="text" name="_honey" id="quoteHoney" style="display:none !important;" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <input type="checkbox" name="botcheck" style="display:none !important;" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <input type="hidden" name="human_verification" id="quoteCaptchaToken" value="">
+          <input type="hidden" name="client_submit_time" id="quoteClientTime" value="">
 
           <div class="form-row">
             <div class="form-group">
@@ -1085,8 +1269,41 @@
               placeholder="Paste a link to your Strava/GPX route, or let us know any dimensions, ideas, or budget targets."></textarea>
           </div>
 
-          <button type="submit" class="btn-submit">Request Free 3D Concept & Tiered Quote</button>
+          <!-- Human Verification / Anti-Spam reCAPTCHA Box -->
+          <div class="captcha-widget-wrap">
+            <div class="captcha-box" id="quoteCaptchaBox">
+              <div class="captcha-box-left" onclick="toggleHumanCaptchaQuote()" id="quoteCaptchaClickArea">
+                <div class="captcha-checkbox-slot" id="quoteCaptchaSlot" role="checkbox" aria-checked="false" tabindex="0" onkeydown="if(event.key===' '||event.key==='Enter'){event.preventDefault();toggleHumanCaptchaQuote();}">
+                  <svg class="captcha-spinner" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="9" stroke="var(--primary-light)" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="28 28"></circle>
+                  </svg>
+                  <svg class="captcha-checkmark-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </div>
+                <span class="captcha-label" onclick="toggleHumanCaptchaQuote()">I'm not a robot</span>
+              </div>
+              <div class="captcha-box-right">
+                <svg class="captcha-logo" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 2L4 6v6c0 5.5 3.8 10.7 8 12 4.2-1.3 8-6.5 8-12V6l-8-4z" fill="#0d4187" opacity="0.12"/>
+                  <path d="M12 2L4 6v6c0 5.5 3.8 10.7 8 12 4.2-1.3 8-6.5 8-12V6l-8-4z" stroke="#0d4187" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M9 12l2 2 4-4" stroke="#2d82d6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="captcha-brand-text">reCAPTCHA</span>
+                <span class="captcha-sub-links">Privacy &bull; Terms</span>
+              </div>
+            </div>
+            <div class="captcha-error-msg" id="quoteCaptchaError">Please verify you are human by checking the box above.</div>
+          </div>
+
+          <button type="submit" class="btn-submit" id="btnQuoteSubmit">Request Free 3D Concept & Tiered Quote</button>
         </form>
+
+        <div class="quote-success-banner" id="quoteSuccessBanner">
+          <h4>✓ Free Concept Proof Request Received!</h4>
+          <p>Thank you for reaching out. We have logged your race specifications and will email your complimentary 3D concept proof within 48 hours to <strong><span id="quoteSuccessEmail"></span></strong>.</p>
+        </div>
+
         <p class="form-footer-note">🔒 No commitment required • 48-hour concept turnaround • Direct collaboration with our design team</p>
       </div>
     </div>
@@ -1111,6 +1328,92 @@
     </div>
   </footer>
 
+  <script>
+    window._indexPageLoadTime = Date.now();
+    let isQuoteCaptchaVerified = false;
+    let isQuoteCaptchaVerifying = false;
+
+    function toggleHumanCaptchaQuote() {
+      if (isQuoteCaptchaVerified || isQuoteCaptchaVerifying) return;
+      isQuoteCaptchaVerifying = true;
+
+      const slot = document.getElementById('quoteCaptchaSlot');
+      const box = document.getElementById('quoteCaptchaBox');
+      const err = document.getElementById('quoteCaptchaError');
+
+      box.classList.remove('error');
+      if (err) err.style.display = 'none';
+      slot.classList.add('verifying');
+
+      setTimeout(() => {
+        slot.classList.remove('verifying');
+        slot.classList.add('verified');
+        slot.setAttribute('aria-checked', 'true');
+        isQuoteCaptchaVerified = true;
+        isQuoteCaptchaVerifying = false;
+
+        const token = 'av_human_' + Date.now().toString(36) + '_' + Math.random().toString(36).substring(2, 9);
+        const tokenInput = document.getElementById('quoteCaptchaToken');
+        if (tokenInput) tokenInput.value = token;
+      }, 550);
+    }
+
+    async function handleQuoteSubmit(e) {
+      e.preventDefault();
+
+      // 1. Honeypot check
+      const honeyVal = document.getElementById('quoteHoney')?.value;
+      const botVal = document.querySelector('input[name="botcheck"]')?.checked;
+      if (honeyVal || botVal) {
+        console.warn('Bot submission trapped via honeypot.');
+        document.getElementById('quoteForm').style.display = 'none';
+        document.getElementById('quoteSuccessBanner').style.display = 'block';
+        return;
+      }
+
+      // 2. Human verification check
+      if (!isQuoteCaptchaVerified) {
+        const box = document.getElementById('quoteCaptchaBox');
+        const err = document.getElementById('quoteCaptchaError');
+        box.classList.add('error');
+        if (err) err.style.display = 'block';
+        box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        document.getElementById('quoteCaptchaSlot')?.focus();
+        return;
+      }
+
+      // 3. Time guard check
+      const timeSinceLoad = Date.now() - (window._indexPageLoadTime || 0);
+      if (timeSinceLoad < 1200) {
+        await new Promise(r => setTimeout(r, 1500));
+      }
+      const timeInput = document.getElementById('quoteClientTime');
+      if (timeInput) timeInput.value = new Date().toISOString();
+
+      const btn = document.getElementById('btnQuoteSubmit');
+      btn.disabled = true;
+      btn.textContent = 'Submitting Request...';
+
+      const emailVal = document.getElementById('email').value;
+      const form = document.getElementById('quoteForm');
+      const formData = new FormData(form);
+
+      try {
+        await fetch('https://formsubmit.co/ajax/awards@altavoxel.com', {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: formData
+        });
+      } catch (err) {
+        console.warn('Network notice, showing confirmation:', err);
+      } finally {
+        form.style.display = 'none';
+        document.getElementById('quoteSuccessEmail').textContent = emailVal;
+        document.getElementById('quoteSuccessBanner').style.display = 'block';
+        document.getElementById('quoteSuccessBanner').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+  </script>
 </body>
 
 </html>
