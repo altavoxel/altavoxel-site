@@ -1382,9 +1382,10 @@
             <div class="form-card">
                 <form id="orderIntakeForm" onsubmit="handleOrderSubmit(event)">
 
-                    <!-- Form Submission Endpoint Config (FormSubmit / Web3Forms compatible) -->
-                    <input type="hidden" name="_to" value="awards@altavoxel.com">
-                    <input type="hidden" name="_subject" value="New Month of Mud 2026 Token Holder Order Intake">
+                    <!-- Web3Forms Endpoint Config -->
+                    <input type="hidden" name="access_key" value="f86669a3-95ce-478b-904b-0fe3694df263">
+                    <input type="hidden" name="from_name" value="Altavoxel Month of Mud Orders">
+                    <input type="hidden" name="subject" value="New Month of Mud 2026 Keepsake Order Intake">
                     <input type="hidden" name="_template" value="table">
                     <input type="hidden" name="selected_product" id="formInputProduct"
                         value="Interconnectable Modular Token Holder">
@@ -2321,8 +2322,8 @@
             }
 
             try {
-                // Post asynchronously to formsubmit.co
-                await fetch('https://formsubmit.co/ajax/awards@altavoxel.com', {
+                // Post asynchronously to Web3Forms
+                await fetch('https://api.web3forms.com/submit', {
                     method: 'POST',
                     headers: { 'Accept': 'application/json' },
                     body: formData
